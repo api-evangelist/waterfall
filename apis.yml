@@ -1,14 +1,12 @@
 aid: waterfall
 name: Waterfall
-description: A sequential software development methodology where progress flows steadily
-  downwards through phases of conception, initiation, analysis, design, construction,
-  testing, deployment, and maintenance.
+description: A sequential software development methodology where progress flows steadily downwards through phases of conception, initiation, analysis, design, construction, testing, deployment, and maintenance.
 type: Index
 url: https://en.wikipedia.org/wiki/Waterfall_model
 tags:
-  - Software Development
   - Project Management
   - SDLC
+  - Software Development
 created: '2025'
 modified: '2026-03-16'
 specificationVersion: '0.19'
