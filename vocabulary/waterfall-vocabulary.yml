@@ -1,0 +1,232 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "Waterfall"
+  description: >-
+    Domain vocabulary for the Waterfall software development methodology,
+    capturing the core concepts, phases, artifacts, roles, and relationships
+    that define sequential software development processes.
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+operational:
+  apis: []
+
+  resources:
+    - name: phases
+      description: Sequential stages of the Waterfall development process
+      actions:
+        - define
+        - review
+        - approve
+        - complete
+    - name: requirements
+      description: Formal documentation of system requirements in the requirements phase
+      actions:
+        - gather
+        - document
+        - review
+        - approve
+    - name: design
+      description: System architecture and technical design specifications
+      actions:
+        - create
+        - review
+        - approve
+    - name: implementation
+      description: Software code development and unit testing
+      actions:
+        - develop
+        - test
+        - integrate
+    - name: verification
+      description: System testing and quality assurance
+      actions:
+        - test
+        - validate
+        - certify
+    - name: deployment
+      description: Release, installation, and production rollout
+      actions:
+        - release
+        - install
+        - deploy
+    - name: maintenance
+      description: Post-deployment support, bug fixes, and enhancements
+      actions:
+        - monitor
+        - patch
+        - update
+
+  actions:
+    - name: gather
+      pattern: query
+      description: Collect and elicit requirements from stakeholders
+    - name: document
+      pattern: write
+      description: Create formal specification or design document
+    - name: review
+      pattern: read
+      description: Evaluate a deliverable against acceptance criteria
+    - name: approve
+      pattern: write
+      description: Grant formal approval to proceed to next phase
+    - name: complete
+      pattern: write
+      description: Mark a phase as complete with signed-off deliverables
+    - name: develop
+      pattern: write
+      description: Write source code implementing design specifications
+    - name: test
+      pattern: query
+      description: Execute tests against software artifacts
+    - name: deploy
+      pattern: write
+      description: Release software to a target environment
+    - name: patch
+      pattern: write
+      description: Apply a bug fix or security patch to production
+
+  schemas:
+    core:
+      - name: Phase
+        description: A distinct sequential stage in the Waterfall development process
+        key_properties:
+          - name
+          - description
+          - start_date
+          - end_date
+          - status
+          - deliverables
+      - name: Requirement
+        description: A documented functional or non-functional system requirement
+        key_properties:
+          - id
+          - title
+          - description
+          - type
+          - priority
+          - status
+      - name: ChangeRequest
+        description: Formal request to change approved requirements or design
+        key_properties:
+          - id
+          - title
+          - description
+          - impact
+          - status
+          - approved_by
+
+  enums:
+    phase_names:
+      - Requirements
+      - System Design
+      - Implementation
+      - Testing
+      - Deployment
+      - Maintenance
+    phase_status:
+      - not-started
+      - in-progress
+      - in-review
+      - approved
+      - complete
+    requirement_types:
+      - functional
+      - non-functional
+      - constraint
+      - assumption
+    requirement_priority:
+      - must-have
+      - should-have
+      - could-have
+      - wont-have
+    change_request_status:
+      - submitted
+      - under-review
+      - approved
+      - rejected
+      - implemented
+
+capability:
+  personas:
+    - id: project-manager
+      name: Project Manager
+      description: Manages phase scheduling, milestones, resource allocation, and phase-gate reviews
+    - id: business-analyst
+      name: Business Analyst
+      description: Gathers, documents, and manages requirements in collaboration with stakeholders
+    - id: solutions-architect
+      name: Solutions Architect
+      description: Creates system design and technical architecture specifications
+    - id: developer
+      name: Developer
+      description: Implements software based on approved design specifications
+    - id: qa-engineer
+      name: QA Engineer
+      description: Designs and executes test plans to verify software meets requirements
+    - id: stakeholder
+      name: Stakeholder
+      description: Business representative providing requirements and approving deliverables
+
+  domains:
+    - name: Requirements Management
+      description: Elicitation, documentation, and approval of system requirements
+      resources:
+        - requirements
+    - name: Design and Architecture
+      description: System and technical design specification
+      resources:
+        - design
+    - name: Development
+      description: Software coding and unit testing
+      resources:
+        - implementation
+    - name: Quality Assurance
+      description: System testing and verification
+      resources:
+        - verification
+    - name: Release Management
+      description: Deployment, installation, and production rollout
+      resources:
+        - deployment
+    - name: Maintenance
+      description: Post-production monitoring, patching, and enhancements
+      resources:
+        - maintenance
+
+crossReference:
+  - resource: requirements
+    actions:
+      - gather
+      - document
+      - approve
+    personas:
+      - Business Analyst
+      - Stakeholder
+      - Project Manager
+
+  - resource: design
+    actions:
+      - create
+      - review
+      - approve
+    personas:
+      - Solutions Architect
+      - Project Manager
+
+  - resource: implementation
+    actions:
+      - develop
+      - test
+    personas:
+      - Developer
+      - QA Engineer
+
+  - resource: verification
+    actions:
+      - test
+      - validate
+    personas:
+      - QA Engineer
+      - Business Analyst
