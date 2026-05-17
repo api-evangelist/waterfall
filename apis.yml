@@ -30,7 +30,7 @@ common:
   - type: Vocabulary
     url: vocabulary/waterfall-vocabulary.yml
     title: Waterfall Vocabulary
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/waterfall-context.jsonld
     title: Waterfall JSON-LD Context
   - type: Features
